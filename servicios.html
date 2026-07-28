@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Servicios — Gastón Lucero</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Jost:wght@300;400;500;600&display=swap');
+
+:root{
+  --bg-deep:#1B140F;
+  --bg-card:#241B15;
+  --bg-card-2:#2D2318;
+  --gold:#C6A15B;
+  --gold-soft:#E4C98A;
+  --gold-dark:#8C6C33;
+  --cream:#F3EAD9;
+  --muted:#A99B85;
+  --line:rgba(198,161,91,0.28);
+  --line-soft:rgba(198,161,91,0.14);
+  --danger:#C6685A;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg-deep);
+  color:var(--cream);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+a{color:var(--gold-soft); text-decoration:none;}
+.eyebrow{
+  font-family:'Jost',sans-serif;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:11px;
+  color:var(--gold);
+  font-weight:500;
+}
+.site-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:26px 48px; border-bottom:1px solid var(--line-soft);
+}
+.brand{font-family:'Fraunces',serif; font-size:22px; letter-spacing:.04em;}
+.brand span{color:var(--gold);}
+.site-nav{display:flex; gap:36px; font-size:13px; letter-spacing:.05em; color:var(--muted);}
+.btn{
+  font-family:'Jost',sans-serif; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  padding:13px 28px; border:1px solid var(--gold-dark); background:transparent;
+  color:var(--gold-soft); cursor:pointer; transition:.2s;
+}
+.btn:hover{background:var(--gold); color:var(--bg-deep); border-color:var(--gold);}
+.btn.solid{background:var(--gold); color:var(--bg-deep);}
+.btn.solid:hover{background:var(--gold-soft);}
+.btn:disabled{opacity:.4; cursor:not-allowed;}
+.section-pad{padding:60px 64px;}
+.section-head{max-width:520px; margin-bottom:40px;}
+.section-head h2{font-size:30px; font-weight:400; margin:14px 0 0;}
+
+.services-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft);}
+.service-card{background:var(--bg-deep); padding:28px 32px; display:flex; justify-content:space-between; align-items:flex-start; gap:20px;}
+.service-card h3{font-size:18px; font-weight:400; margin:0 0 8px;}
+.service-card p{color:var(--muted); font-size:13px; margin:0;}
+.service-price{font-family:'Fraunces',serif; color:var(--gold-soft); font-size:19px; white-space:nowrap;}
+.service-duration{display:block; font-size:11px; color:var(--muted); letter-spacing:.08em; margin-top:4px;}
+
+.booking-wrap{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line-soft);}
+.booking-col{padding:48px 48px;}
+.booking-col + .booking-col{border-left:1px solid var(--line-soft);}
+.step-label{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
+.step-num{font-family:'Fraunces',serif; color:var(--gold); font-size:14px; border:1px solid var(--gold-dark); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center;}
+.service-pick{display:flex; flex-direction:column; gap:10px; margin-bottom:36px;}
+.pick-row{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border:1px solid var(--line); cursor:pointer; font-size:14px;}
+.pick-row.selected{border-color:var(--gold); background:rgba(198,161,91,0.08); color:var(--gold-soft);}
+.pick-row span:last-child{color:var(--muted); font-size:12px;}
+.pick-row.selected span:last-child{color:var(--gold);}
+
+.day-strip{display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;}
+.day-chip{width:56px; padding:10px 0; text-align:center; border:1px solid var(--line); font-size:12px; cursor:pointer;}
+.day-chip .d{display:block; color:var(--muted); font-size:10px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px;}
+.day-chip.selected{border-color:var(--gold); background:rgba(198,161,91,0.08); color:var(--gold-soft);}
+.day-chip.disabled{opacity:.3; text-decoration:line-through; cursor:not-allowed;}
+
+.slot-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:36px;}
+.slot{padding:11px 0; text-align:center; font-size:13px; border:1px solid var(--line); cursor:pointer;}
+.slot.selected{border-color:var(--gold); background:var(--gold); color:var(--bg-deep);}
+.slot.taken{border-color:var(--line-soft); color:var(--muted); opacity:.35; text-decoration:line-through; cursor:not-allowed;}
+
+.field{margin-bottom:20px;}
+.field label{display:block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;}
+.field input{width:100%; background:transparent; border:none; border-bottom:1px solid var(--line); color:var(--cream); font-family:'Jost',sans-serif; font-size:15px; padding:8px 2px;}
+.field input:focus{outline:none; border-bottom-color:var(--gold);}
+.summary-card{margin-top:28px; padding:22px; border:1px solid var(--line); background:var(--bg-card);}
+.summary-card .row{display:flex; justify-content:space-between; font-size:13px; padding:6px 0; color:var(--muted);}
+.summary-card .row span:last-child{color:var(--cream);}
+.summary-card .total{border-top:1px solid var(--line-soft); margin-top:6px; padding-top:12px; font-family:'Fraunces',serif; font-size:17px; color:var(--gold-soft);}
+
+.msg{padding:14px 18px; font-size:13px; margin-bottom:20px; border:1px solid; display:none;}
+.msg.show{display:block;}
+.msg.error{border-color:var(--danger); color:var(--danger);}
+.msg.success{border-color:var(--gold); color:var(--gold-soft);}
+
+.panel-shell{display:grid; grid-template-columns:220px 1fr; min-height:600px;}
+.panel-side{border-right:1px solid var(--line-soft); padding:36px 0;}
+.panel-side .p-item{padding:14px 32px; font-size:13px; color:var(--muted); cursor:pointer; border-left:2px solid transparent;}
+.panel-side .p-item.active{color:var(--gold-soft); border-left:2px solid var(--gold); background:rgba(198,161,91,0.06);}
+.panel-main{padding:40px 44px;}
+.panel-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;}
+.panel-top h2{font-size:22px; font-weight:400; margin:0;}
+.day-nav{display:flex; align-items:center; gap:18px; color:var(--muted); font-size:13px;}
+.day-nav .arrow{cursor:pointer; color:var(--gold); background:none; border:none; font-size:16px; font-family:inherit;}
+
+.agenda{border-top:1px solid var(--line-soft);}
+.agenda-row{display:grid; grid-template-columns:80px 1fr 140px 100px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line-soft); font-size:14px;}
+.agenda-row .time{color:var(--gold); font-family:'Fraunces',serif; font-size:15px;}
+.agenda-row .client{color:var(--cream);}
+.agenda-row .service{color:var(--muted); font-size:12px;}
+.status-tag{font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; text-align:center; width:fit-content;}
+.status-tag.reservado{border:1px solid var(--gold-dark); color:var(--gold-soft);}
+.status-tag.bloqueado{border:1px solid var(--muted); color:var(--muted);}
+.row-actions{color:var(--muted); font-size:12px; text-align:right; cursor:pointer; background:none; border:none; font-family:inherit;}
+.row-actions:hover{color:var(--danger);}
+
+.login-wrap{max-width:360px; margin:100px auto; padding:0 24px;}
+.login-wrap h2{margin-bottom:30px;}
+
+.price-row{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--line-soft); gap:16px;}
+.price-row input{width:110px; background:var(--bg-card); border:1px solid var(--line); color:var(--cream); padding:8px 10px; font-family:'Jost',sans-serif;}
+
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="brand">Gastón <span>Lucero</span></div>
+  <div class="site-nav"><a href="index.html">Inicio</a></div>
+  <a class="btn solid" href="reserva.html">Reservar turno</a>
+</div>
+
+<div class="section-pad">
+  <div class="section-head">
+    <span class="eyebrow">Catálogo</span>
+    <h2>Servicios y precios</h2>
+  </div>
+  <div class="services-grid" id="servicesGrid">
+    <p style="padding:24px; color:var(--muted);">Cargando servicios...</p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script>
+async function cargarServicios(){
+  const grid = document.getElementById('servicesGrid');
+  const { data, error } = await db
+    .from('servicios')
+    .select('*')
+    .eq('activo', true)
+    .order('nombre');
+
+  if(error){
+    grid.innerHTML = '<p style="padding:24px; color:var(--danger);">No pudimos cargar los servicios. Probá recargar la página.</p>';
+    return;
+  }
+
+  grid.innerHTML = data.map(s => `
+    <div class="service-card">
+      <div>
+        <h3>${s.nombre}</h3>
+      </div>
+      <div style="text-align:right;">
+        <span class="service-price">$${Number(s.precio).toLocaleString('es-AR')}</span>
+        <span class="service-duration">${s.duracion_minutos} min</span>
+      </div>
+    </div>
+  `).join('');
+}
+cargarServicios();
+</script>
+
+</body>
+</html>
